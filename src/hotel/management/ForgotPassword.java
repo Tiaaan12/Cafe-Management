@@ -20,19 +20,47 @@ import java.awt.event.ActionListener;
 import java.util.Random;
 import java.awt.Font;
 import java.awt.Color;
+import java.util.Locale;
+import java.util.ResourceBundle;
 public class ForgotPassword extends javax.swing.JFrame {
      int mouseX; 
       int mouseY;
       private LinkedList<userAccount> accounts;
-    public ForgotPassword(LinkedList<userAccount> accounts) {
+        private ResourceBundle bundle;
+        private LanguageManager lang;
+        private ImageIcon enIcon;
+      private ImageIcon jpIcon;
+      private ImageIcon phIcon;
+    public ForgotPassword(LinkedList<userAccount> accounts, String languageCode) {
         this.accounts = accounts;
         initComponents();
+         Locale currentLocale = Locale.ENGLISH;  // or Locale.JAPAN, new Locale("tl", "PH"), etc.
+    bundle = ResourceBundle.getBundle("hotel.management.Messages", currentLocale);
+        
+        
          jLabel15.setVisible(false);
          jPanel5.setVisible(false);
         setupCustomUI();
+        
+ enIcon = new ImageIcon(getClass().getResource("/resource/icons/english.png"));
+  jpIcon = new ImageIcon(getClass().getResource("/resource/icons/japanese.png"));
+   phIcon = new ImageIcon(getClass().getResource("/resource/icons/filipino.png"));
+      lang = new LanguageManager();
+lang.setLanguage(languageCode);
+applyLanguage();
        
     }
-
+private void applyLanguage() {
+    
+    jLabelTitle.setText(lang.get("forgot.title"));
+    jLabelUsername.setText(lang.get("forgot.username"));
+    jLabelEmail.setText(lang.get("forgot.email"));
+    jLabelNewPassword.setText(lang.get("forgot.newpassword"));
+    jLabelConfirmPassword.setText(lang.get("forgot.confirmpassword"));
+    jButtonUpdate.setText(lang.get("forgot.update"));
+    jLabelWelcome.setText(lang.get("forgot.welcome"));
+    jLabelHeader.setText(lang.get("forgot.header"));
+}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -42,36 +70,49 @@ public class ForgotPassword extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel3 = new javax.swing.JPanel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        btnMinimize = new javax.swing.JButton();
-        jLabel12 = new javax.swing.JLabel();
-        btnExit = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        jTabbedPane1 = new javax.swing.JTabbedPane();
+        jPanel3 = new javax.swing.JPanel(){
+            @Override
+            public void paintComponent(Graphics g){
+                Graphics2D g2 = (Graphics2D)g;
+                g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+                g2.setColor(new Color(111, 80, 45));
+                g2.fillRoundRect(0,0,getWidth(),getHeight(),40,40);
+            }
+
+        }
+        ;
+        dropdownLabel = new javax.swing.JLabel();
+        dropdownPanel = new hotel.management.dropdownPanel();
+        labelEnglish = new javax.swing.JLabel();
+        labelFilipino = new javax.swing.JLabel();
+        labelJapanese = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
-        jLabel13 = new javax.swing.JLabel();
+        jLabelTitle = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
-        jLabel18 = new javax.swing.JLabel();
-        jLabel19 = new javax.swing.JLabel();
-        hide = new javax.swing.JLabel();
-        hide1 = new javax.swing.JLabel();
-        show = new javax.swing.JLabel();
-        show1 = new javax.swing.JLabel();
+        jButtonUpdate = new javax.swing.JButton();
+        jLabelUsername = new javax.swing.JLabel();
+        jLabelNewPassword = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jLabel20 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
-        jLabel22 = new javax.swing.JLabel();
+        jLabelWelcome = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
         jPasswordField2 = new javax.swing.JPasswordField();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
+        jLabelEmail = new javax.swing.JLabel();
+        jLabelConfirmPassword = new javax.swing.JLabel();
         jPasswordField3 = new javax.swing.JPasswordField();
         jTextField3 = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
+        jPanel6 = new javax.swing.JPanel();
+        jLabelHeader = new javax.swing.JLabel();
+        jLabel24 = new javax.swing.JLabel();
+        btnMinimize1 = new javax.swing.JButton();
+        jLabel25 = new javax.swing.JLabel();
+        btnExit1 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("login");
@@ -79,85 +120,103 @@ public class ForgotPassword extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel3.setBackground(new java.awt.Color(255, 255, 220));
-        jPanel3.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(80, 50, 30)));
-        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel10.setBackground(new java.awt.Color(111, 80, 55));
-        jLabel10.setFont(new java.awt.Font("Yu Gothic", 1, 18)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(80, 50, 30));
-        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel10.setText("心温まるひとときを、どうぞお過ごしください心温まるひとときを、どうぞお過ごしください。");
-        jPanel3.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 0, 530, 50));
-
-        jLabel11.setBackground(new java.awt.Color(111, 80, 55));
-        jLabel11.setFont(new java.awt.Font("Candara", 1, 36)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(80, 50, 30));
-        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel11.setText("JAVABEE EXPRESS");
-        jPanel3.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, -20, 390, 90));
-
-        btnMinimize.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        btnMinimize.setForeground(new java.awt.Color(111, 78, 60));
-        btnMinimize.setText("—");
-        btnMinimize.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
-        btnMinimize.setBorderPainted(false);
-        btnMinimize.setContentAreaFilled(false);
-        btnMinimize.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnMinimizeMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnMinimizeMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnMinimizeMouseExited(evt);
-            }
-        });
-        btnMinimize.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMinimizeActionPerformed(evt);
-            }
-        });
-        jPanel3.add(btnMinimize, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 0, 40, 40));
-
-        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hotel/management/coffee png.png"))); // NOI18N
-        jPanel3.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, -10, 40, 50));
-
-        btnExit.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        btnExit.setForeground(new java.awt.Color(111, 78, 60));
-        btnExit.setText("X");
-        btnExit.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
-        btnExit.setBorderPainted(false);
-        btnExit.setContentAreaFilled(false);
-        btnExit.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnExitMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnExitMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnExitMouseExited(evt);
-            }
-        });
-        btnExit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnExitActionPerformed(evt);
-            }
-        });
-        jPanel3.add(btnExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 0, 40, 40));
-
-        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1060, 40));
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hotel/management/javabeee.jpg"))); // NOI18N
-        jLabel1.setText(" ");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 530, -1));
-
         jPanel2.setBackground(new java.awt.Color(255, 239, 200));
         jPanel2.setLayout(null);
-        jPanel2.add(jTabbedPane1);
-        jTabbedPane1.setBounds(260, 410, 0, 1);
+
+        jPanel3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jPanel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jPanel3MouseEntered(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jPanel3MouseReleased(evt);
+            }
+        });
+
+        dropdownLabel.setBackground(new java.awt.Color(255, 255, 255));
+        dropdownLabel.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        dropdownLabel.setForeground(new java.awt.Color(255, 255, 255));
+        dropdownLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/icons/english.png"))); // NOI18N
+        dropdownLabel.setText("English");
+        dropdownLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                dropdownLabelMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                dropdownLabelMouseEntered(evt);
+            }
+        });
+        jPanel3.add(dropdownLabel);
+
+        jPanel2.add(jPanel3);
+        jPanel3.setBounds(420, 10, 120, 40);
+
+        labelEnglish.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        labelEnglish.setForeground(new java.awt.Color(255, 255, 255));
+        labelEnglish.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/icons/english.png"))); // NOI18N
+        labelEnglish.setText("English");
+        labelEnglish.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        labelEnglish.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                labelEnglishMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                labelEnglishMouseEntered(evt);
+            }
+        });
+
+        labelFilipino.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        labelFilipino.setForeground(new java.awt.Color(255, 255, 255));
+        labelFilipino.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/icons/filipino.png"))); // NOI18N
+        labelFilipino.setText("Filipino");
+        labelFilipino.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        labelFilipino.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                labelFilipinoMouseClicked(evt);
+            }
+        });
+
+        labelJapanese.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        labelJapanese.setForeground(new java.awt.Color(255, 255, 255));
+        labelJapanese.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/icons/japanese.png"))); // NOI18N
+        labelJapanese.setText("Japanese");
+        labelJapanese.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        labelJapanese.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                labelJapaneseMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout dropdownPanelLayout = new javax.swing.GroupLayout(dropdownPanel);
+        dropdownPanel.setLayout(dropdownPanelLayout);
+        dropdownPanelLayout.setHorizontalGroup(
+            dropdownPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dropdownPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(dropdownPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(dropdownPanelLayout.createSequentialGroup()
+                        .addGroup(dropdownPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(labelEnglish)
+                            .addComponent(labelFilipino))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(labelJapanese, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        dropdownPanelLayout.setVerticalGroup(
+            dropdownPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dropdownPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(labelEnglish)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(labelFilipino)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(labelJapanese)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jPanel2.add(dropdownPanel);
+        dropdownPanel.setBounds(420, 60, 120, 110);
+        dropdownPanel.setVisible(false);
 
         jPanel4.setBackground(new java.awt.Color(252, 244, 222));
         jPanel4.setBorder(javax.swing.BorderFactory.createCompoundBorder(new javax.swing.border.LineBorder(new java.awt.Color(221, 190, 153), 2, true), javax.swing.BorderFactory.createEmptyBorder(15, 15, 15, 15)));
@@ -168,93 +227,45 @@ public class ForgotPassword extends javax.swing.JFrame {
         });
         jPanel4.setLayout(null);
 
-        jLabel13.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 18)); // NOI18N
-        jLabel13.setForeground(new java.awt.Color(111, 78, 55));
-        jLabel13.setText("RESET PASSWORD");
-        jPanel4.add(jLabel13);
-        jLabel13.setBounds(70, 0, 190, 48);
+        jLabelTitle.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        jLabelTitle.setForeground(new java.awt.Color(111, 78, 55));
+        jLabelTitle.setText("FORGOT PASSWORD");
+        jPanel4.add(jLabelTitle);
+        jLabelTitle.setBounds(70, 0, 240, 48);
 
         jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hotel/management/loading gif effect.gif"))); // NOI18N
         jPanel4.add(jLabel15);
-        jLabel15.setBounds(150, 120, 70, 90);
+        jLabel15.setBounds(190, 250, 70, 90);
 
-        jButton2.setBackground(new java.awt.Color(255, 202, 40));
-        jButton2.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(111, 80, 45));
-        jButton2.setText("UPDATE");
-        jButton2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(185, 152, 123), 1, true));
-        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+        jButtonUpdate.setBackground(new java.awt.Color(255, 202, 40));
+        jButtonUpdate.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        jButtonUpdate.setForeground(new java.awt.Color(111, 80, 45));
+        jButtonUpdate.setText("UPDATE");
+        jButtonUpdate.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(185, 152, 123), 1, true));
+        jButtonUpdate.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton2MouseClicked(evt);
+                jButtonUpdateMouseClicked(evt);
             }
         });
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jButtonUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jButtonUpdateActionPerformed(evt);
             }
         });
-        jPanel4.add(jButton2);
-        jButton2.setBounds(40, 300, 263, 40);
+        jPanel4.add(jButtonUpdate);
+        jButtonUpdate.setBounds(40, 300, 263, 40);
 
-        jLabel18.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        jLabel18.setForeground(new java.awt.Color(111, 78, 55));
-        jLabel18.setText("Username:");
-        jPanel4.add(jLabel18);
-        jLabel18.setBounds(50, 100, 75, 30);
+        jLabelUsername.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jLabelUsername.setForeground(new java.awt.Color(111, 78, 55));
+        jLabelUsername.setText("Username:");
+        jPanel4.add(jLabelUsername);
+        jLabelUsername.setBounds(50, 100, 75, 30);
 
-        jLabel19.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        jLabel19.setForeground(new java.awt.Color(111, 78, 55));
-        jLabel19.setText("New Password:");
-        jPanel4.add(jLabel19);
-        jLabel19.setBounds(30, 200, 110, 30);
-
-        hide.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hotel/management/hide pass.png"))); // NOI18N
-        hide.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                hideMousePressed(evt);
-            }
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                hideMouseReleased(evt);
-            }
-        });
-        jPanel4.add(hide);
-        hide.setBounds(260, 210, 40, 20);
-
-        hide1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hotel/management/hide pass.png"))); // NOI18N
-        hide1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                hide1MousePressed(evt);
-            }
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                hide1MouseReleased(evt);
-            }
-        });
-        jPanel4.add(hide1);
-        hide1.setBounds(260, 260, 40, 20);
-
-        show.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hotel/management/show pass.png"))); // NOI18N
-        show.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                showMouseClicked(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                showMousePressed(evt);
-            }
-        });
-        jPanel4.add(show);
-        show.setBounds(260, 210, 40, 20);
-
-        show1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hotel/management/show pass.png"))); // NOI18N
-        show1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                show1MouseClicked(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                show1MousePressed(evt);
-            }
-        });
-        jPanel4.add(show1);
-        show1.setBounds(260, 260, 40, 20);
+        jLabelNewPassword.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jLabelNewPassword.setForeground(new java.awt.Color(111, 78, 55));
+        jLabelNewPassword.setText("New Password:");
+        jPanel4.add(jLabelNewPassword);
+        jLabelNewPassword.setBounds(30, 200, 110, 30);
 
         jPanel5.setBackground(new java.awt.Color(255, 230, 230));
         jPanel5.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
@@ -264,26 +275,26 @@ public class ForgotPassword extends javax.swing.JFrame {
         jPanel5.add(jLabel20);
         jLabel20.setBounds(0, -10, 60, 50);
 
-        jLabel21.setFont(new java.awt.Font("Segoe UI Black", 1, 12)); // NOI18N
+        jLabel21.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         jLabel21.setForeground(new java.awt.Color(153, 51, 51));
         jLabel21.setText("\"Incorrect username or password. Try again.\"");
         jPanel5.add(jLabel21);
-        jLabel21.setBounds(20, 0, 290, 30);
+        jLabel21.setBounds(20, 0, 261, 30);
 
         jPanel4.add(jPanel5);
         jPanel5.setBounds(10, 60, 310, 30);
 
-        jLabel22.setBackground(new java.awt.Color(111, 80, 55));
-        jLabel22.setFont(new java.awt.Font("Yu Gothic", 1, 12)); // NOI18N
-        jLabel22.setForeground(new java.awt.Color(80, 50, 30));
-        jLabel22.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel22.setText("ようこそ、心あたたまるひとときを。");
-        jPanel4.add(jLabel22);
-        jLabel22.setBounds(50, 40, 240, 30);
+        jLabelWelcome.setBackground(new java.awt.Color(111, 80, 55));
+        jLabelWelcome.setFont(new java.awt.Font("Yu Gothic", 1, 12)); // NOI18N
+        jLabelWelcome.setForeground(new java.awt.Color(80, 50, 30));
+        jLabelWelcome.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelWelcome.setText("Welcome, enjoy a warm and comforting time");
+        jPanel4.add(jLabelWelcome);
+        jLabelWelcome.setBounds(10, 40, 300, 30);
 
         jLabel23.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hotel/management/JAVABEE(40X40).png"))); // NOI18N
         jPanel4.add(jLabel23);
-        jLabel23.setBounds(20, 10, 80, 50);
+        jLabel23.setBounds(10, 0, 80, 50);
 
         jPasswordField2.setBackground(new java.awt.Color(255, 250, 240));
         jPasswordField2.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
@@ -292,17 +303,17 @@ public class ForgotPassword extends javax.swing.JFrame {
         jPanel4.add(jPasswordField2);
         jPasswordField2.setBounds(150, 200, 150, 31);
 
-        jLabel7.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(111, 80, 45));
-        jLabel7.setText("Email:");
-        jPanel4.add(jLabel7);
-        jLabel7.setBounds(80, 140, 50, 50);
+        jLabelEmail.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jLabelEmail.setForeground(new java.awt.Color(111, 80, 45));
+        jLabelEmail.setText("Email:");
+        jPanel4.add(jLabelEmail);
+        jLabelEmail.setBounds(80, 150, 50, 30);
 
-        jLabel14.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        jLabel14.setForeground(new java.awt.Color(111, 80, 45));
-        jLabel14.setText("Confirm Password:");
-        jPanel4.add(jLabel14);
-        jLabel14.setBounds(10, 250, 140, 30);
+        jLabelConfirmPassword.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jLabelConfirmPassword.setForeground(new java.awt.Color(111, 80, 45));
+        jLabelConfirmPassword.setText("Confirm Password:");
+        jPanel4.add(jLabelConfirmPassword);
+        jLabelConfirmPassword.setBounds(10, 250, 140, 30);
 
         jPasswordField3.setBackground(new java.awt.Color(255, 250, 240));
         jPasswordField3.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
@@ -343,49 +354,104 @@ public class ForgotPassword extends javax.swing.JFrame {
         jPanel2.add(jPanel4);
         jPanel4.setBounds(130, 120, 330, 360);
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 40, 540, 560));
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 40, 550, 560));
+
+        jPanel6.setBackground(new java.awt.Color(255, 255, 220));
+        jPanel6.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(80, 50, 30)));
+        jPanel6.setLayout(null);
+
+        jLabelHeader.setBackground(new java.awt.Color(111, 80, 55));
+        jLabelHeader.setFont(new java.awt.Font("SansSerif", 1, 16)); // NOI18N
+        jLabelHeader.setForeground(new java.awt.Color(80, 50, 30));
+        jLabelHeader.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelHeader.setText("“Brewed with love, served with comfort.”  ");
+        jPanel6.add(jLabelHeader);
+        jLabelHeader.setBounds(340, 0, 490, 40);
+
+        jLabel24.setBackground(new java.awt.Color(111, 80, 55));
+        jLabel24.setFont(new java.awt.Font("Algerian", 1, 26)); // NOI18N
+        jLabel24.setForeground(new java.awt.Color(80, 50, 30));
+        jLabel24.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel24.setText("JAVABEE EXPRESS");
+        jPanel6.add(jLabel24);
+        jLabel24.setBounds(20, -20, 300, 90);
+
+        btnMinimize1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnMinimize1.setForeground(new java.awt.Color(111, 78, 60));
+        btnMinimize1.setText("—");
+        btnMinimize1.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
+        btnMinimize1.setBorderPainted(false);
+        btnMinimize1.setContentAreaFilled(false);
+        btnMinimize1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnMinimize1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnMinimize1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnMinimize1MouseExited(evt);
+            }
+        });
+        btnMinimize1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMinimize1ActionPerformed(evt);
+            }
+        });
+        jPanel6.add(btnMinimize1);
+        btnMinimize1.setBounds(980, 0, 40, 40);
+
+        jLabel25.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hotel/management/coffee icons.png"))); // NOI18N
+        jPanel6.add(jLabel25);
+        jLabel25.setBounds(10, 0, 40, 40);
+
+        btnExit1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnExit1.setForeground(new java.awt.Color(111, 78, 60));
+        btnExit1.setText("X");
+        btnExit1.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
+        btnExit1.setBorderPainted(false);
+        btnExit1.setFocusPainted(false);
+        btnExit1.setContentAreaFilled(false);
+        btnExit1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnExit1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnExit1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnExit1MouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnExit1MousePressed(evt);
+            }
+        });
+        btnExit1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExit1ActionPerformed(evt);
+            }
+        });
+        jPanel6.add(btnExit1);
+        btnExit1.setBounds(1020, 0, 40, 40);
+
+        getContentPane().add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1060, 40));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hotel/management/javabeee.jpg"))); // NOI18N
+        jLabel1.setText(" ");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 510, 550));
+
+        jLabel2.setBackground(new java.awt.Color(228, 227, 233));
+        jLabel2.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("We are close. Come back at 9:00 A.M.");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 230, 430, -1));
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hotel/management/javabeenight.jpg"))); // NOI18N
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 510, 590));
 
         setSize(new java.awt.Dimension(1061, 600));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnMinimizeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMinimizeMouseClicked
-        setState(JFrame.ICONIFIED);
-    }//GEN-LAST:event_btnMinimizeMouseClicked
-
-    private void btnMinimizeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMinimizeMouseEntered
-        btnMinimize.setOpaque(true);
-        btnMinimize.setBackground(Color.RED);
-        btnMinimize.setContentAreaFilled(true);
-    }//GEN-LAST:event_btnMinimizeMouseEntered
-
-    private void btnMinimizeMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMinimizeMouseExited
-        btnMinimize.setOpaque(false);
-        btnMinimize.setContentAreaFilled(false);
-    }//GEN-LAST:event_btnMinimizeMouseExited
-
-    private void btnMinimizeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMinimizeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnMinimizeActionPerformed
-
-    private void btnExitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExitMouseClicked
-        System.exit(0);
-    }//GEN-LAST:event_btnExitMouseClicked
-
-    private void btnExitMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExitMouseEntered
-        btnExit.setOpaque(true);
-        btnExit.setBackground(Color.RED); // or new Color(255, 102, 102)
-        btnExit.setContentAreaFilled(true);
-    }//GEN-LAST:event_btnExitMouseEntered
-
-    private void btnExitMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExitMouseExited
-        btnExit.setOpaque(false);
-        btnExit.setContentAreaFilled(false);
-    }//GEN-LAST:event_btnExitMouseExited
-
-    private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnExitActionPerformed
 
     private void jPasswordField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField3ActionPerformed
         // TODO add your handling code here:
@@ -395,13 +461,13 @@ public class ForgotPassword extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField2ActionPerformed
 
-    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+    private void jButtonUpdateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonUpdateMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2MouseClicked
+    }//GEN-LAST:event_jButtonUpdateMouseClicked
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void jButtonUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUpdateActionPerformed
  jLabel15.setVisible(true);    // Show loading animation
-    jButton2.setEnabled(false);   // Prevent multiple clicks
+    jButtonUpdate.setEnabled(false);   // Prevent multiple clicks
 
     SwingWorker<Void, Void> worker = new SwingWorker<>() {
         String result = null;
@@ -425,14 +491,14 @@ public class ForgotPassword extends javax.swing.JFrame {
         @Override
         protected void done() {
             jLabel15.setVisible(false); 
-            jButton2.setEnabled(true); 
-
+            jButtonUpdate.setEnabled(true); 
+          
             if (result == null) {
-                JOptionPane.showMessageDialog(null, "Password successfully updated!");
+                JOptionPane.showMessageDialog(null, bundle.getString("forgot.success.password_updated"));
                 new Login(accounts).setVisible(true);
                 dispose(); // Close current window
             } else {
-                jLabel21.setText(result);
+                 jLabel21.setText(LanguageManager.get(result));
                 jPanel5.setVisible(true); // Show error panel
             }
         }
@@ -440,75 +506,120 @@ public class ForgotPassword extends javax.swing.JFrame {
 
     worker.execute();
       
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void hideMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hideMousePressed
-        show.setVisible(true);
-        hide.setVisible(false);
-        jPasswordField2.setEchoChar((char)0);
-    }//GEN-LAST:event_hideMousePressed
-
-    private void hideMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hideMouseReleased
-        show.setVisible(false);
-        hide.setVisible(true);
-        jPasswordField2.setEchoChar('*');
-        
-    }//GEN-LAST:event_hideMouseReleased
-
-    private void showMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_showMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_showMouseClicked
-
-    private void showMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_showMousePressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_showMousePressed
+    }//GEN-LAST:event_jButtonUpdateActionPerformed
 
     private void jPanel4MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel4MouseDragged
 
     }//GEN-LAST:event_jPanel4MouseDragged
 
-    private void hide1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hide1MousePressed
-         show1.setVisible(true);
-        hide1.setVisible(false);
-        jPasswordField3.setEchoChar((char)0);
-    }//GEN-LAST:event_hide1MousePressed
-
-    private void hide1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hide1MouseReleased
-             show1.setVisible(false);
-        hide1.setVisible(true);
-        jPasswordField3.setEchoChar('*');
-    }//GEN-LAST:event_hide1MouseReleased
-
-    private void show1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_show1MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_show1MouseClicked
-
-    private void show1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_show1MousePressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_show1MousePressed
-
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField3ActionPerformed
+
+    private void btnMinimize1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMinimize1MouseClicked
+        setState(JFrame.ICONIFIED);
+    }//GEN-LAST:event_btnMinimize1MouseClicked
+
+    private void btnMinimize1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMinimize1MouseEntered
+        btnMinimize1.setOpaque(true);
+        btnMinimize1.setBackground(Color.lightGray); // or new Color(255, 102, 102)
+        btnMinimize1.setContentAreaFilled(true);
+    }//GEN-LAST:event_btnMinimize1MouseEntered
+
+    private void btnMinimize1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMinimize1MouseExited
+        btnMinimize1.setOpaque(false);
+        btnMinimize1.setContentAreaFilled(false);
+    }//GEN-LAST:event_btnMinimize1MouseExited
+
+    private void btnMinimize1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMinimize1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnMinimize1ActionPerformed
+
+    private void btnExit1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExit1MouseClicked
+        System.exit(0);
+    }//GEN-LAST:event_btnExit1MouseClicked
+
+    private void btnExit1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExit1MouseEntered
+        btnExit1.setOpaque(true);
+        btnExit1.setBackground(Color.RED); // hover = red
+    }//GEN-LAST:event_btnExit1MouseEntered
+
+    private void btnExit1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExit1MouseExited
+        btnExit1.setOpaque(false);
+        btnExit1.setBackground(null); // back to no background
+    }//GEN-LAST:event_btnExit1MouseExited
+
+    private void btnExit1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExit1MousePressed
+        btnExit1.setOpaque(true);
+        btnExit1.setBackground(Color.RED); // keep red when pressed
+    }//GEN-LAST:event_btnExit1MousePressed
+
+    private void btnExit1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExit1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnExit1ActionPerformed
+
+    private void dropdownLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dropdownLabelMouseClicked
+
+    }//GEN-LAST:event_dropdownLabelMouseClicked
+
+    private void dropdownLabelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dropdownLabelMouseEntered
+        dropdownPanel.setVisible(true);
+    }//GEN-LAST:event_dropdownLabelMouseEntered
+
+    private void jPanel3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MouseEntered
+
+    }//GEN-LAST:event_jPanel3MouseEntered
+
+    private void jPanel3MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MouseReleased
+
+    }//GEN-LAST:event_jPanel3MouseReleased
+
+    private void labelEnglishMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelEnglishMouseClicked
+        dropdownLabel.setText("English");
+        dropdownLabel.setIcon(enIcon);
+        dropdownPanel.setVisible(false);
+        lang.setLanguage("en");
+        applyLanguage();
+    }//GEN-LAST:event_labelEnglishMouseClicked
+
+    private void labelEnglishMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelEnglishMouseEntered
+
+    }//GEN-LAST:event_labelEnglishMouseEntered
+
+    private void labelFilipinoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelFilipinoMouseClicked
+        dropdownLabel.setText("Filipino");
+        dropdownLabel.setIcon(phIcon);
+        dropdownPanel.setVisible(false);
+        lang.setLanguage("tl");
+        applyLanguage();
+    }//GEN-LAST:event_labelFilipinoMouseClicked
+
+    private void labelJapaneseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelJapaneseMouseClicked
+        dropdownLabel.setText("Japanese");
+        dropdownLabel.setIcon(jpIcon);
+        dropdownPanel.setVisible(false);
+        lang.setLanguage("ja");
+        applyLanguage();
+    }//GEN-LAST:event_labelJapaneseMouseClicked
 private void setupCustomUI() {
     setIconImage(new ImageIcon(getClass().getResource("iconn.png")).getImage());
     
 
-    btnMinimize.setOpaque(false);
-    btnMinimize.setContentAreaFilled(false);
-    btnMinimize.setBorderPainted(false);
-    btnMinimize.setFocusable(false);
+    btnMinimize1.setOpaque(false);
+    btnMinimize1.setContentAreaFilled(false);
+    btnMinimize1.setBorderPainted(false);
+    btnMinimize1.setFocusable(false);
 
  
    
-    jPanel3.addMouseListener(new java.awt.event.MouseAdapter() {
+    jPanel6.addMouseListener(new java.awt.event.MouseAdapter() {
         public void mousePressed(java.awt.event.MouseEvent evt) {
             mouseX = evt.getX();
             mouseY = evt.getY();
-        }
+        }   
     });
 
-    jPanel3.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+    jPanel6.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
         public void mouseDragged(java.awt.event.MouseEvent evt) {
             int x = evt.getXOnScreen();
             int y = evt.getYOnScreen();
@@ -553,35 +664,38 @@ private void setupCustomUI() {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnExit;
-    private javax.swing.JButton btnMinimize;
-    private javax.swing.JLabel hide;
-    private javax.swing.JLabel hide1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btnExit1;
+    private javax.swing.JButton btnMinimize1;
+    private javax.swing.JLabel dropdownLabel;
+    private hotel.management.dropdownPanel dropdownPanel;
+    private javax.swing.JButton jButtonUpdate;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
-    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabelConfirmPassword;
+    private javax.swing.JLabel jLabelEmail;
+    private javax.swing.JLabel jLabelHeader;
+    private javax.swing.JLabel jLabelNewPassword;
+    private javax.swing.JLabel jLabelTitle;
+    private javax.swing.JLabel jLabelUsername;
+    private javax.swing.JLabel jLabelWelcome;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JPasswordField jPasswordField2;
     private javax.swing.JPasswordField jPasswordField3;
-    private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
-    private javax.swing.JLabel show;
-    private javax.swing.JLabel show1;
+    private javax.swing.JLabel labelEnglish;
+    private javax.swing.JLabel labelFilipino;
+    private javax.swing.JLabel labelJapanese;
     // End of variables declaration//GEN-END:variables
 }

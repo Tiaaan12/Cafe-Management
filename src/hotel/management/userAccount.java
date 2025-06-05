@@ -58,17 +58,17 @@ public class userAccount {
     
    public static String register(String username, String password, String email, String contactNumber, LinkedList<userAccount> accounts) {
     if (username.isEmpty() || password.isEmpty() || email.isEmpty() || contactNumber.isEmpty()) {
-        return "Please fill in all fields.";
+        return "register.empty_fields";
     }
 
     for (userAccount acc : accounts) {
         if (acc.getUsername().equalsIgnoreCase(username)) {
-            return "Username already exists.";
+            return "register.already_exist";
         }
     }
 
     if (!isValidPassword(password)) {
-        return "Password must be at least 8 characters and include uppercase, lowercase, number, and special character.";
+        return "register.weak_passowrd";
     }
 
     // If passed all checks, register
@@ -79,18 +79,18 @@ public class userAccount {
     
     public static String resetPassword(String username, String email, String newPassword, String confirmPassword, LinkedList<userAccount> accounts) {
     if (username.isEmpty() || email.isEmpty() || newPassword.isEmpty() || confirmPassword.isEmpty()) {
-        return "Please fill out all fields.";
+        return "forgot.error.empty_fields";
     }
 
     for (userAccount acc : accounts) {
         if (acc.getUsername().equalsIgnoreCase(username) && acc.getEmail().equalsIgnoreCase(email)) {
 
             if (!isValidPassword(newPassword)) {
-                return "Password must be at least 8 characters and include uppercase, lowercase, number, and special character.";
+                 return "forgot.error.weak_password"; 
             }
 
             if (!newPassword.equals(confirmPassword)) {
-                return "Passwords do not match!";
+               return "forgot.error.passwords_not_match"; 
             }
 
             acc.setPassword(newPassword);
@@ -98,7 +98,7 @@ public class userAccount {
         }
     }
 
-    return "No matching account found.";
+   return "forgot.error.no_account";  // Key
 }
 }
 

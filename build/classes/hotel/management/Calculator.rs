@@ -1,0 +1,4 @@
+hotel.management.MealCalculator
+hotel.management.CakeCalculator
+hotel.management.Calculator
+hotel.management.CoffeeCalculator

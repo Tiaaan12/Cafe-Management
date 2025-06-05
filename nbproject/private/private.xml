@@ -4,15 +4,27 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/Christian%20Devera/Documents/NetBeansProjects/Hotel%20Management/src/hotel/management/ForgotPassword.java</file>
-            <file>file:/C:/Users/Christian%20Devera/Documents/NetBeansProjects/Hotel%20Management/src/hotel/management/userAccount.java</file>
             <file>file:/C:/Users/Christian%20Devera/Documents/NetBeansProjects/Hotel%20Management/src/hotel/management/Dashboard.java</file>
             <file>file:/C:/Users/Christian%20Devera/Documents/NetBeansProjects/Hotel%20Management/src/hotel/management/Login.java</file>
+            <file>file:/C:/Users/Christian%20Devera/Documents/NetBeansProjects/Hotel%20Management/src/hotel/management/HomeePage.java</file>
             <file>file:/C:/Users/Christian%20Devera/Documents/NetBeansProjects/Hotel%20Management/src/hotel/management/CafeItem.java</file>
-            <file>file:/C:/Users/Christian%20Devera/Documents/NetBeansProjects/Hotel%20Management/src/hotel/management/HotelManagement.java</file>
             <file>file:/C:/Users/Christian%20Devera/Documents/NetBeansProjects/Hotel%20Management/src/hotel/management/Calculator.java</file>
             <file>file:/C:/Users/Christian%20Devera/Documents/NetBeansProjects/Hotel%20Management/src/hotel/management/TransactionProcessor.java</file>
             <file>file:/C:/Users/Christian%20Devera/Documents/NetBeansProjects/Hotel%20Management/src/hotel/management/PaymentHandler.java</file>
             <file>file:/C:/Users/Christian%20Devera/Documents/NetBeansProjects/Hotel%20Management/src/hotel/management/Register.java</file>
+            <file>file:/C:/Users/Christian%20Devera/Documents/NetBeansProjects/Hotel%20Management/src/hotel/management/ReceiptPrintable.java</file>
+            <file>file:/C:/Users/Christian%20Devera/Documents/NetBeansProjects/Hotel%20Management/src/hotel/management/coffee%20png.png</file>
+            <file>file:/C:/Users/Christian%20Devera/Documents/NetBeansProjects/Hotel%20Management/src/hotel/management/javabeenight.jpg</file>
+            <file>file:/C:/Users/Christian%20Devera/Documents/NetBeansProjects/Hotel%20Management/src/hotel/management/CafeItemUI.java</file>
+            <file>file:/C:/Users/Christian%20Devera/Documents/NetBeansProjects/Hotel%20Management/src/hotel/management/PaymentPanel.java</file>
+            <file>file:/C:/Users/Christian%20Devera/Documents/NetBeansProjects/Hotel%20Management/src/hotel/management/LanguageManager.java</file>
+            <file>file:/C:/Users/Christian%20Devera/Documents/NetBeansProjects/Hotel%20Management/src/hotel/management/ReceiptPreview.java</file>
+            <file>file:/C:/Users/Christian%20Devera/Documents/NetBeansProjects/Hotel%20Management/src/hotel/management/dropdownPanel.java</file>
+            <file>file:/C:/Users/Christian%20Devera/Documents/NetBeansProjects/Hotel%20Management/src/hotel/management/userAccount.java</file>
+            <file>file:/C:/Users/Christian%20Devera/Documents/NetBeansProjects/Hotel%20Management/src/hotel/management/HotelManagement.java</file>
+            <file>file:/C:/Users/Christian%20Devera/Documents/NetBeansProjects/Hotel%20Management/src/hotel/management/Messages_ja.properties</file>
+            <file>file:/C:/Users/Christian%20Devera/Documents/NetBeansProjects/Hotel%20Management/src/hotel/management/Messages_tl.properties</file>
+            <file>file:/C:/Users/Christian%20Devera/Documents/NetBeansProjects/Hotel%20Management/src/hotel/management/Messages_en.properties</file>
         </group>
     </open-files>
 </project-private>

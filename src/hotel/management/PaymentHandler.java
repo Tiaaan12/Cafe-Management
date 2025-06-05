@@ -28,70 +28,62 @@ public class PaymentHandler {
         this.cashierName = cashierName;
     }
 
-    public void handlePayment() {
-    // Check if total is zero (no items selected)
+  public boolean handlePayment() {
     if (transactionproProcessor.getTotal() == 0.0) {
         JOptionPane.showMessageDialog(null, "You haven't selected any item");
-        return;
+        return false;
     }
 
-    // Get cash input from JTextField
     String cashInput = jCashField.getText().trim();
-
-    // Check if cash input is empty
     if (cashInput.isEmpty()) {
         JOptionPane.showMessageDialog(null, "Please enter the cash amount.");
-        return;
+        return false;
     }
 
     double cashPaid;
-
-    // Try to parse cash input to double
     try {
         cashPaid = Double.parseDouble(cashInput);
     } catch (NumberFormatException e) {
         JOptionPane.showMessageDialog(null, "Invalid cash amount. Enter a number.");
-        return;
+        return false;
     }
 
     double totalAmount = transactionproProcessor.getTotalWithTax();
 
-    // Check if cash is enough
     if (cashPaid < totalAmount) {
         JOptionPane.showMessageDialog(null, "Cash is not enough to pay for the total.");
-        return;
+        return false;
     }
 
-    double change = cashPaid - totalAmount;
-        LocalDateTime now = LocalDateTime.now();
+    // Continue processing
+    double change = cashPaid - totalAmount; 
+    LocalDateTime now = LocalDateTime.now();
     DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("MMMM dd, yyyy");
     DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("hh:mm a");
 
     String date = now.format(dateFormatter);
     String time = now.format(timeFormatter);
-    // Print receipt details in the JTextArea
-    jTextArea.append(
-    "\n========================================\n" +
-    "                 JavaBee Express\n" +
-    "--------------------------------------------------\n" +
-    "Date: " + date + "        Time: " + time + "\n" +
-    "Cashier: " + cashierName + "\n" +
-    "---------------------------------------------------\n" +
-    String.format("Subtotal: \t\t%.2f\n", transactionproProcessor.getTotal()) +
-    String.format("Tax (12%%): \t\t%.2f\n", transactionproProcessor.getTax()) +
-    String.format("Total: \t\t\t%.2f\n", totalAmount) +
-    String.format("Cash Paid: \t\t%.2f\n", cashPaid) +
-    String.format("Change: \t\t%.2f\n", change) +
-    "---------------------------------------------------\n" +
-    "Transaction From: " + cashierName + "  →  Customer\n" +
-    "========================================\n" +
-    "         THANK YOU AND JAVA GOOD DAY!\n" +
-    "========================================\n"
-);;
 
-    // Disable total button to prevent repeated payment
-    jBtnTotal.setEnabled(false);
-    
-    
+    jTextArea.append(
+        "\n=======================================\n" +
+        "                 JavaBee Express\n" +
+        "---------------------------------------\n" +
+        "Date: " + date + "        Time: " + time + "\n" +
+        "Customer: " + cashierName + "\n" +
+        "----------------------------------------\n" +
+        String.format("Subtotal: \t\t%.2f\n", transactionproProcessor.getTotal()) +
+        String.format("Tax (12%%): \t\t%.2f\n", transactionproProcessor.getTax()) +
+        String.format("Total: \t\t\t%.2f\n", totalAmount) +
+        String.format("Cash Paid: \t\t%.2f\n", cashPaid) +
+        String.format("Change: \t\t%.2f\n", change) +
+        "----------------------------------------\n" +
+        "Transaction From: " + "JAVABEE" + " → " + cashierName +  
+        "=======================================\n" +
+        "         THANK YOU AND JAVA GOOD DAY!\n" +
+        "=======================================\n"
+    );
+
+    jBtnTotal.setEnabled(false);  
+    return true;
 }
 }
